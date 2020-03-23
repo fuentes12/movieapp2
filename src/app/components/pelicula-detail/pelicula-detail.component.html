@@ -1,0 +1,49 @@
+<div style="display: flex; justify-content: space-between;">
+    <div>
+        <h3 class="animated fadeIn" style="margin-left: 10px; color:#007bff;    
+        font-size: 20px;">{{peliculaDET.title | uppercase}} <small>({{peliculaDET.release_date | date:'y'}})</small></h3>
+    </div>
+    <div>
+        <button class="btn btn-outline-danger btn-block" (click)="verMovieback(category_) ">
+            <mat-icon>arrow_back_ios</mat-icon>    <mat-icon>arrow_back_ios</mat-icon>  Volver  
+        </button>
+
+    </div>
+</div>
+<div class="row animated fadeIn fast">
+
+    <div class="col-md-4">
+        <img [src]="peliculaDET | peliimg" class="img-fluid" alt="peliculaDET.title" style="width:100%">
+
+
+    </div>
+
+    <div class="col-md-8">
+        <h3>{{peliculaDET.original_title}}</h3>
+        <hr>
+        <p>
+            {{peliculaDET.overview}}
+        </p>
+        <p>
+            <strong>  Popularidad:</strong> {{peliculaDET.popularity}}
+        </p>
+        <p>
+            <strong>  Valoración:</strong> {{peliculaDET.vote_average * 10}}% -- {{peliculaDET.vote_count}} personas han votado este Titulo.
+        </p>
+        <p>
+            <strong> Fecha Lanzamiento:</strong> {{peliculaDET.release_date }}
+        </p>
+        <p>
+            <strong>Generos</strong>
+        </p>
+
+        <div *ngIf="peliculaDET.genres.length>0">
+            <p class="badge badge-pill badge-info mr-2 genres" *ngFor="let genre of peliculaDET.genres">
+                {{ genre.name }}
+            </p>
+        </div>
+
+
+    </div>
+
+    <!-- {{peliculaDET | json}} -->

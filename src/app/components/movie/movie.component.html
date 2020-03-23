@@ -1,0 +1,26 @@
+<div class="card animated fadeIn fast">
+    <div style="width: 225px; height: 200px; display:block; margin:auto;" class="content_img">
+        <div style="width: 225px; height: 200px;">
+            <p>Popularidad: {{movie.popularity}}</p>
+            <p>Votos: {{movie.vote_count}}</p>
+
+        </div>
+        <!--           carga img w300
+ -->
+        <!-- <img [src]="movie | peliimg" class="card-img-top" style="width: 200px; height: 100px;" [alt]="movie.original_title">
+ -->
+        <img [src]="movie.poster_path ? ('https://image.tmdb.org/t/p/w500' + movie.poster_path) : '../../../assets/images/not-found.png'" class="card-img-top" style="width: 100%; height: 100%;" [alt]="movie.original_title">
+
+
+    </div>
+    <div class="card-body">
+        <p> {{cat | uppercase}} </p>
+        <h5 class="card-title">{{movie.original_title}}</h5>
+        <p class="card-text">Fecha de Lanzamiento:.{{movie.release_date}}</p>
+
+        <button class="btn btn-outline-primary btn-block" (click)="verMovie(movie.id,cat) ">
+          <mat-icon>visibility</mat-icon>  Ver más...
+      </button>
+
+    </div>
+</div>

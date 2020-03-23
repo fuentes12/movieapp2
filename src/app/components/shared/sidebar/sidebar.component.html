@@ -1,0 +1,15 @@
+<mat-drawer mode="side" opened>
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" style="display: flex;
+    flex-direction: column;
+    margin: 15px 0;" [(ngModel)]="favoriteSeason">
+        <div *ngFor="let season of menuItems.getMainMenu()">
+            <!--                 <a class="nav-link" *ngIf="season.type=='sub'" [routerLink]="['/'+season.state]" routerLinkActive="active-link"> {{season.name}} </a>
+-->
+            <mat-radio-button *ngIf="season.type=='sub'" class="example-radio-button" [value]="season.name">
+                {{season.name}}
+            </mat-radio-button>
+        </div>
+    </mat-radio-group>
+
+    <div>Your favorite season is: {{favoriteSeason}}</div>
+</mat-drawer>

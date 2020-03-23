@@ -1,0 +1,49 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" style="display: flex;
+        flex-direction: column;
+        margin: 15px 0;" [(ngModel)]="favoriteSeason">
+            <div *ngFor="let season of menuItems.getMainMenu()">
+                <a class="nav-link" *ngIf="season.type=='sub'" [routerLink]="['/'+season.state]" routerLinkActive="active-link" [ngClass]="{'active': titlepage == season.name }">
+
+                    <mat-radio-button *ngIf="season.type=='sub'" class="example-radio-button" [value]="season.name">
+                        {{season.name}}
+                    </mat-radio-button>
+                </a>
+            </div>
+        </mat-radio-group>
+
+    </mat-drawer>
+    <mat-drawer-content>
+
+        <mat-tab-group>
+
+
+
+            <mat-tab *ngFor="let i of menuItems.getMainMenu()" (click)="getMovies(i.state)">
+                <ng-template mat-tab-label *ngIf="i.type=='link'">
+
+                    <button #btn1 id="btn1" class="mdc-button" (click)="getMovies(i.state)">
+                        <div   class="mdc-button__ripple"  ></div>
+                        <span  class="mdc-button__label" >{{i.name |   uppercase }}</span>
+                      </button>
+
+                </ng-template>
+                <div *ngIf="i.type=='link'">
+                    <h1 class="text-center">{{titlepage}}</h1>
+                    <hr>
+                    <div class="card-columns">
+                        <div class="card-columns" style="display: inline;" *ngFor="let foo of moviesToShow | slice:0:9; let i=index">
+                            <app-movie [movie]="foo" [cat]="titlepage" [index]="i"></app-movie>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+
+
+        </mat-tab-group>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<!-- {{moviesToShow | json}} -->
